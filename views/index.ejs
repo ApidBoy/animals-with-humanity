@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NGO Site</title>
+    <link rel="stylesheet" href="/styles/style.css">
+    <style>
+        body {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items:center;
+        }
+        input{
+            margin: 15px;
+        }
+    </style>
+</head>
+<body>
+    <form action="/" method="POST" onsubmit='alert("Data submitted successfully")'>
+        Enter data to add to the MongoDB server:
+        <input name="data" type="text">
+        <br/>
+        Submit to the server: <button type="submit">Submit</button>
+    </form>
+</body>
+</html>
