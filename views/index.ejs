@@ -17,14 +17,56 @@
         input{
             margin: 15px;
         }
+        img {
+            width: 400px;
+        }
     </style>
+
 </head>
 <body>
-    <form action="/" method="POST" onsubmit='alert("Data submitted successfully")'>
-        Enter data to add to the MongoDB server:
-        <input name="data" type="text">
+    <h2>Animals with Humanity</h2>
+    <form action="/" method=POST enctype=multipart/form-data onsubmit='alert("Data submitted successfully")'>
+        Name:
+        <input required name="name" type="text">
         <br/>
-        Submit to the server: <button type="submit">Submit</button>
+        Address:
+        <input required name="address" type="text">
+        <br/>
+        Description:
+        <input required name="desc" type="text">
+        <br/>
+        One more thingy:
+        <input required name="etc" type="text">
+        <br/>
+        Select image: <input required type="file" id="imageSelector" accept=".jpg, .jpeg, .png"><br/>
+        <br/>
+        <img id="img"/>
+        <br/>
+        <button type="submit">Submit to the server</button>
     </form>
 </body>
+<script>
+    function getImage(image) {
+        for (const element of image) {
+            const name = element.name ? element.name : 'Not supported on this platform, try another browser or device.';
+            const type = element.type ? element.type : 'Not supported on this platform, try another browser or device.';
+            const size = element.size ? element.size : 'Not supported on this platform, try another browser or device.';
+            console.log({element, name, type, size});
+            function readImage(file) {
+                const reader = new FileReader();
+                reader.addEventListener('load', (event) => {
+                    img.src = event.target.result;
+                    document.getElementById('imageInput').value = event.target.result;
+                });
+                reader.readAsDataURL(file);
+            }
+            readImage(element);
+        }
+    }
+    const imageSelector = document.getElementById('imageSelector');
+    imageSelector.addEventListener('change', (event) => {
+        const image = event.target.files;
+        getImage(image);
+    });
+</script>
 </html>
