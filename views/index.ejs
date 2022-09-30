@@ -150,7 +150,7 @@
                         const imageStatus = document.getElementById('imageStatus');
                         imageStatus.innerHTML = "Uploading image...";
 
-                        const result = await fetch('https://api.imgbb.com/1/upload&key=ed8e8ae50f717d7e2db1e87711fab7b8', {
+                        const result = await fetch('https://api.imgbb.com/1/upload?&key=ed8e8ae50f717d7e2db1e87711fab7b8', {
                             method: 'POST',
                             body: form
                         });
