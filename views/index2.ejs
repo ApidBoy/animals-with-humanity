@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>NGO Site</title>
+        <link rel="stylesheet" href="/styles/style.css">
+        <style>
+            *{
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+                text-decoration: none;
+            }
+            html{
+                font-size: 62.5%;
+                height: 100%;
+                width: 100%;
+                padding: 2rem;
+                background-color: white
+            }
+            body{
+                width: 100%;
+                height: 100%;
+            }
+            
+            h1{
+                font-family:cursive;
+                text-align: center;
+                color: black;
+                padding: 2rem;
+                font-weight: bold;
+            }
+            h2{
+                font-family:cursive;
+                text-align: center;
+                color: black;
+                padding: 2rem;
+            }
+            form{
+                display: flex;
+                flex-direction:column;
+            }
+            .form{
+                display: flex;
+                justify-content: center;
+                font-size: 1.5rem;
+                font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            }
+            input{
+                margin: 1rem 0rem 1rem 0rem;
+                width: 30rem;
+                padding: .5rem
+            }
+        </style>
+    
+    </head>
+    <body>
+
+        
+        <!-- <h1><b>Animals with Humanity</b></h1>
+        <h2>Submit a Report</h3>
+        <div class="form">
+            <form action="/" method=POST enctype=multipart/form-data onsubmit='alert("Data submitted successfully")'>
+                <label for="">Full Name</label>
+                <input required name="name" type="text" placeholder="Enter your name here ">
+        
+                <label for="">Contact No.</label>
+                <input required name="contact" type="number" placeholder="Enter your number here ">
+        
+                <label for="">Description</label>
+                <input required name="desc" type="text" placeholder="Enter the issue ">
+        
+                <label for="">Location</label>
+                <input required name="location" type="text" placeholder="Enter your location here ">
+
+                <label for="">Image</label>
+                <input required type="file" id="imageSelector" accept=".jpg, .jpeg, .png">
+
+                <input type="submit" value="submit">
+            </form>
+        </div>
+ -->
+
+
+
+
+
+
+
+
+
+
+        <h2>Animals with Humanity</h2>
+        <form action="/" method=POST enctype=multipart/form-data onsubmit='alert("Data submitted successfully")'>
+            Name:
+            <input required name="name" type="text">
+            <br/>
+            Address:
+            <input required name="address" type="text">
+            <br/>
+            Description:
+            <input required name="desc" type="text">
+            <br/>
+            One more thingy:
+            <input required name="etc" type="text">
+            <br/>
+            Select image: <input required type="file" id="imageSelector" accept=".jpg, .jpeg, .png"><br/>
+            <br/>
+            <img id="img"/>
+            <input style="display:none" name="imageData" id="imageData"/>
+            <br/>
+            <button type="submit">Submit to the server</button>
+        </form>
+    </body>
+    <script>
+        function getImage(image) {
+            for (const element of image) {
+                const name = element.name ? element.name : 'Not supported on this platform, try another browser or device.';
+                const type = element.type ? element.type : 'Not supported on this platform, try another browser or device.';
+                const size = element.size ? element.size : 'Not supported on this platform, try another browser or device.';
+                console.log({element, name, type, size});
+                function readImage(file) {
+                    const reader = new FileReader();
+                    reader.addEventListener('load', (event) => {
+                        img.src = event.target.result;
+                        console.log(event.target.result);
+                        imageData.value = event.target.result;
+
+                        document.getElementById('imageInput').value = event.target.result;
+                    });
+                    reader.readAsDataURL(file);
+                }
+                readImage(element);
+            }
+        }
+        const imageSelector = document.getElementById('imageSelector');
+        imageSelector.addEventListener('change', (event) => {
+            const image = event.target.files;
+            getImage(image);
+        });
+    </script>
+</html>

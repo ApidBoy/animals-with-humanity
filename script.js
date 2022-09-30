@@ -20,13 +20,12 @@ app.post('/', (req, res) => {
         await client.db("admin").command({ ping: 1 });
         const collection = client.db("test").collection("users");
         await collection.insertOne({
-            'Name': 'xyz',
-            'Address': '123 street',
-            'Description': 'test desc',
-            'One more thingy': 'one more thing',
-            'Picture': "https://imgsv.imaging.nikon.com/lineup/dslr/df/img/sample/img_01_l.jpg"
+            'Name': req.body.name,
+            'Contact No.': req.body.contact,
+            'Description': req.body.desc,
+            'Location': req.body.location,
+            'Picture': req.body.imageData
         });
-        console.log(req.body.image);
         console.log("Connected successfully to server");
         } finally {
         await client.close();

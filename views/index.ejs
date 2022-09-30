@@ -1,72 +1,174 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NGO Site</title>
-    <link rel="stylesheet" href="/styles/style.css">
-    <style>
-        body {
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items:center;
-        }
-        input{
-            margin: 15px;
-        }
-        img {
-            width: 400px;
-        }
-    </style>
-
-</head>
-<body>
-    <h2>Animals with Humanity</h2>
-    <form action="/" method=POST enctype=multipart/form-data onsubmit='alert("Data submitted successfully")'>
-        Name:
-        <input required name="name" type="text">
-        <br/>
-        Address:
-        <input required name="address" type="text">
-        <br/>
-        Description:
-        <input required name="desc" type="text">
-        <br/>
-        One more thingy:
-        <input required name="etc" type="text">
-        <br/>
-        Select image: <input required type="file" id="imageSelector" accept=".jpg, .jpeg, .png"><br/>
-        <br/>
-        <img id="img"/>
-        <br/>
-        <button type="submit">Submit to the server</button>
-    </form>
-</body>
-<script>
-    function getImage(image) {
-        for (const element of image) {
-            const name = element.name ? element.name : 'Not supported on this platform, try another browser or device.';
-            const type = element.type ? element.type : 'Not supported on this platform, try another browser or device.';
-            const size = element.size ? element.size : 'Not supported on this platform, try another browser or device.';
-            console.log({element, name, type, size});
-            function readImage(file) {
-                const reader = new FileReader();
-                reader.addEventListener('load', (event) => {
-                    img.src = event.target.result;
-                    document.getElementById('imageInput').value = event.target.result;
-                });
-                reader.readAsDataURL(file);
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>NGO Site</title>
+        <link rel="stylesheet" href="/styles/style.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+        <script src="https://cdn.tailwindcss.com"></script>
+        <style>
+            body {
+                font-family: 'Poppins', sans-serif;
             }
-            readImage(element);
+            #form{
+                box-shadow: 0 0 30px #999;
+            }
+            header, footer {
+                box-shadow: 0 0 10px #222;
+            }
+            #imageSelector {
+                margin-top: 10px;
+            }
+            #imageStatus {
+              text-align: center;
+            }
+        </style>
+    
+    </head>
+    <body>
+
+        <header class="text-gray-600 bg-gray-200 body-font">
+            <div class="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
+              <nav class="flex lg:w-2/5 flex-wrap items-center text-base md:ml-auto">
+                <a class="mr-5 hover:text-gray-900">Instagram</a>
+                <a class="mr-5 hover:text-gray-900">Facebook</a>
+                <a class="mr-5 hover:text-gray-900">YouTube</a>
+              </nav>
+              <a class="flex order-first lg:order-none lg:w-1/5 title-font font-medium items-center text-gray-900 lg:items-center lg:justify-center mb-4 md:mb-0">
+
+                <span class="ml-3 text-xl">Animals With Humanity</span>
+              </a>
+              <div class="lg:w-2/5 inline-flex lg:justify-end ml-5 lg:ml-0">
+                <button class="inline-flex items-center bg-gray-100 border-0 py-1 px-3 focus:outline-none hover:bg-gray-200 rounded text-base mt-4 md:mt-0">Support Us
+                  <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-4 h-4 ml-1" viewBox="0 0 24 24">
+                    <path d="M5 12h14M12 5l7 7-7 7"></path>
+                  </svg>
+                </button>
+              </div>
+            </div>
+          </header>
+
+        <section class="text-gray-600 body-font relative">
+            <div class="container px-5 py-24 mx-auto">
+              <div class="flex flex-col text-center w-full mb-12">
+                <h1 class="sm:text-3xl text-2xl font-medium title-font mb-4 text-gray-900">Submit a report</h1>
+                <p class="lg:w-2/3 mx-auto leading-relaxed text-base">Fill the respective form below to submit the report.</p>
+              </div>
+              <form action="/" method=POST onsubmit='alert("Data submitted successfully")'>
+                <div id="form" class="border-2 rounded-lg border-gray-200 border-opacity-50 p-8 lg:w-1/2 md:w-2/3 mx-auto">
+                    <div class="flex flex-wrap -m-2">
+                    <div class="p-2 w-1/2">
+                        <div class="relative">
+                        <label for="name" class="leading-7 text-sm text-gray-600">Name</label>
+                        <input required placeholder="Your name here" type="text" id="name" name="name" class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-green-500 focus:bg-white focus:ring-2 focus:ring-green-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+                        </div>
+                    </div>
+                    <div class="p-2 w-1/2">
+                        <div class="relative">
+                        <label for="contact" class="leading-7 text-sm text-gray-600">Contact No.</label>
+                        <input required placeholder="Your contact no. here" type="number" id="contact" name="contact" class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-green-500 focus:bg-white focus:ring-2 focus:ring-green-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+                        </div>
+                        <!-- maxlength="10" minlength="10" -->
+                    </div>
+                    <div class="p-2 w-full">
+                        <div class="relative">
+                        <label for="desc" class="leading-7 text-sm text-gray-600">Description</label>
+                        <input required placeholder="Your problem here" type="text" id="desc" name="desc" class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-green-500 focus:bg-white focus:ring-2 focus:ring-green-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+                        </div>
+                    </div>
+                    <div class="p-2 w-full">
+                        <div class="relative">
+                        <label for="location" class="leading-7 text-sm text-gray-600">Location</label>
+                        <textarea required placeholder="Your location here" id="location" name="location" class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-green-500 focus:bg-white focus:ring-2 focus:ring-green-200 h-32 text-base outline-none text-gray-700 py-1 px-3 resize-none leading-6 transition-colors duration-200 ease-in-out"></textarea>
+                        </div>
+                    </div>
+                    <div class="p-2 w-full">
+                        Select image: <br/><input type="file" id="imageSelector" accept=".jpg, .jpeg, .png"><br/>
+                        <br/>
+                        <img id="img"/>
+                        <input style="display:none" name="imageData" id="imageData"/>
+                        <br/>
+                        <div id="imageStatus"></div>
+                    </div>
+
+                    <div class="p-2 w-full">
+                        <button id="submitButton" type="submit" class="flex mx-auto text-white bg-gray-500 border-0 py-2 px-8 focus:outline-none rounded text-lg">Submit</button>
+                    </div>
+                    <div class="p-2 w-full pt-8 mt-8 border-t border-gray-200 text-center">
+                        <a class="text-green-500">example@email.com</a>
+                        <p class="leading-normal my-5">Address here
+                        <br>Bhopal, Madhya Pradesh - IN
+                        </p>
+                    </div>
+                    </div>
+                </div>
+              </form>
+            </div>
+          </section>
+
+          <footer>
+            <div class="bg-gray-100">
+                <div class="container px-5 py-6 mx-auto flex items-center sm:flex-row flex-col">
+                  <a class="flex title-font font-medium items-center md:justify-start justify-center text-gray-900">
+                    
+                    <span class="ml-3 text-xl">Animals With Humanity | Team AWH</span>
+                  </a>
+                  <span class="inline-flex sm:ml-auto sm:mt-0 mt-4 justify-center sm:justify-start">
+                    
+
+                  <p class="text-sm text-gray-500 sm:ml-6 sm:mt-0 mt-4">© 2022 All Rights Reserved | Made with <3 by<a href="https://github.com/ApidBoy" rel="noopener noreferrer" class="text-gray-800 ml-1 hover:text-green-600" target="_blank">ApidBoy</a>
+                  </p>
+                    
+                  </span>
+                </div>
+              </div>
+          </footer>
+
+    </body>
+    <script>
+        const submitButton = document.getElementById('submitButton');
+        submitButton.disabled = true;
+
+        function getImage(image) {
+            for (const element of image) {
+                const name = element.name ? element.name : 'Not supported on this platform, try another browser or device.';
+                const type = element.type ? element.type : 'Not supported on this platform, try another browser or device.';
+                const size = element.size ? element.size : 'Not supported on this platform, try another browser or device.';
+                console.log({element, name, type, size});
+                function readImage(file) {
+                    const reader = new FileReader();
+                    reader.addEventListener('load', async (event) => {
+                        const imageInfo = event.target.result;
+                        img.src = imageInfo;
+
+                        const form = new FormData();
+                        form.append('image', imageInfo.split(',')[1]);
+                        const imageStatus = document.getElementById('imageStatus');
+                        imageStatus.innerHTML = "Uploading image...";
+
+                        const result = await fetch('https://api.imgbb.com/1/upload?expiration=600&key=ed8e8ae50f717d7e2db1e87711fab7b8', {
+                            method: 'POST',
+                            body: form
+                        });
+                        let data = await result.json();
+                        document.getElementById('imageData').value = data.data.url;
+                        imageStatus.innerHTML = "Image uploaded succesfully";
+                        submitButton.disabled = false;
+                        submitButton.className = "flex mx-auto text-white bg-green-500 border-0 py-2 px-8 focus:outline-none hover:bg-green-600 rounded text-lg";
+                    });
+                    reader.readAsDataURL(file);
+                }
+                readImage(element);
+            }
         }
-    }
-    const imageSelector = document.getElementById('imageSelector');
-    imageSelector.addEventListener('change', (event) => {
-        const image = event.target.files;
-        getImage(image);
-    });
-</script>
+        const imageSelector = document.getElementById('imageSelector');
+        imageSelector.addEventListener('change', (event) => {
+            const image = event.target.files;
+            getImage(image);
+        });
+    </script>
 </html>
