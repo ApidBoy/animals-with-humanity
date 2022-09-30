@@ -34,5 +34,8 @@ app.post('/', (req, res) => {
     init().catch(console.dir);
     res.redirect('/');
 });
+app.get('/about', (req, res) => {
+    res.render('about.ejs');
+})
 
-app.listen(process.env.PORT);
+app.listen(process.env.PORT || 8000);
