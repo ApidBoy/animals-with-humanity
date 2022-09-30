@@ -4,7 +4,6 @@ const app = express();
 const { MongoClient, ServerApiVersion } = require('mongodb');
 const uri = process.env.CREDENTIALS;
 const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true, serverApi: ServerApiVersion.v1 });
-const server = http.createServer(process.env.PORT || 3000);
 
 app.set('view-engine', 'ejs');
 app.use(express.static(__dirname + '/views/styles'));
@@ -36,4 +35,4 @@ app.post('/', (req, res) => {
     res.redirect('/');
 });
 
-app.listen(server);
+app.listen(process.env.PORT);
