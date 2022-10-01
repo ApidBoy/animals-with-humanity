@@ -10,23 +10,22 @@ app.use(express.static(__dirname + '/views/styles'));
 app.use(express.urlencoded({extended:true}));
 
 app.get('/', (req, res) => {
-    res.render('index.ejs');  
+    res.render('index.ejs');
 });
 
 app.post('/', (req, res) => {
     async function init() {
         try {
         await client.connect();
-        await client.db("admin").command({ ping: 1 });
-        const collection = client.db("test").collection("users");
+        const collection = client.db("main").collection("users");
         await collection.insertOne({
             'Name': req.body.name,
-            'Contact No.': req.body.contact,
+            'Contact': req.body.contact,
             'Description': req.body.desc,
             'Location': req.body.location,
-            'Picture': req.body.imageData
+            'Picture': req.body.imageData,
+            'DeletionID': String(Date.now())
         });
-        console.log("Connected successfully to server");
         } finally {
         await client.close();
         }
