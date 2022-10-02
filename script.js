@@ -7,6 +7,7 @@ const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology:
 
 app.set('view-engine', 'ejs');
 app.use(express.static(__dirname + '/views/styles'));
+app.use(express.static('public'));
 app.use(express.urlencoded({extended:true}));
 
 app.get('/', (req, res) => {
@@ -21,8 +22,9 @@ app.post('/', (req, res) => {
         await collection.insertOne({
             'Name': req.body.name,
             'Contact': req.body.contact,
-            'Description': req.body.desc,
             'Location': req.body.location,
+            'Type': req.body.type,
+            'Description': req.body.desc,
             'Picture': req.body.imageData,
             'DeletionID': String(Date.now())
         });

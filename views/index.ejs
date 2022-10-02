@@ -26,6 +26,15 @@
             #imageStatus {
               text-align: center;
             }
+            #type {
+              padding: 5px;
+              border-radius: 5px;
+              outline: none;
+            }
+            #icon {
+              width: 50px;
+              border-radius: 26px;
+            }
         </style>
     
     </head>
@@ -39,7 +48,7 @@
                 <a target="_blank" href="https://wa.me/message/MGDJVZCQKXI7K1" class="mr-5 hover:text-gray-900">WhatsApp</a>
               </nav>
               <a class="flex order-first lg:order-none lg:w-1/5 title-font font-medium items-center text-gray-900 lg:items-center lg:justify-center mb-4 md:mb-0">
-
+                <img id="icon" src="icon_awh.jpeg"/>
                 <span class="ml-3 text-xl">Animals With Humanity</span>
               </a>
               <div class="lg:w-2/5 inline-flex lg:justify-end ml-5 lg:ml-0">
@@ -84,27 +93,26 @@
                         <!-- maxlength="10" minlength="10" -->
                     </div>
                     <div class="p-2 w-full">
-                        <div class="relative">
-                        <label for="desc" class="leading-7 text-sm text-gray-600">Description</label>
-                        <input required placeholder="Your problem here" type="text" id="desc" name="desc" class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-green-500 focus:bg-white focus:ring-2 focus:ring-green-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
-                        </div>
+                      <div class="relative">
+                        <label for="location" class="leading-7 text-sm text-gray-600">Location</label>
+                        <textarea required placeholder="Your location here" id="location" name="location" class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-green-500 focus:bg-white focus:ring-2 focus:ring-green-200 h-32 text-base outline-none text-gray-700 py-1 px-3 resize-none leading-6 transition-colors duration-200 ease-in-out"></textarea>
+                      </div>
                     </div>
                     <div class="p-2 w-full">
                          <div class="relative">
-                         <label for="type" class="leading-7 text-sm text-gray-600">Please Select The Type of Your Report</label>
-                         <select id="type">
+                         <label for="type" class="leading-7 text-sm text-gray-600">Please Select The Type of Your Report </label>
+                         <br/>
+                         <select required name="type" id="type">
                               <option value="Rescue">Rescue</option>
                               <option value="Adoption Appeal">Adoption Appeal</option>
                         </select>
-                        <div class="relative">
-                        <label for="location" class="leading-7 text-sm text-gray-600">Location</label>
-                        <textarea required placeholder="Your location here" id="location" name="location" class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-green-500 focus:bg-white focus:ring-2 focus:ring-green-200 h-32 text-base outline-none text-gray-700 py-1 px-3 resize-none leading-6 transition-colors duration-200 ease-in-out"></textarea>
                         </div>
-                    </div>2 w-full">
-                        <div class="relative">
-                        <label for="location" class="leading-7 text-sm text-gray-600">Location</label>
-                        <input type="radio" name="choose">
-                        Adoption <input type="radio" name="choose">
+                      </div>
+                      <div class="p-2 w-full">
+                          <div class="relative">
+                          <label for="desc" class="leading-7 text-sm text-gray-600">Description</label>
+                          <input required placeholder="Your problem here" type="text" id="desc" name="desc" class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-green-500 focus:bg-white focus:ring-2 focus:ring-green-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+                          </div>
                       </div>
                     </div>
                     <div class="p-2 w-full">
