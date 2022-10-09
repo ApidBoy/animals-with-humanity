@@ -11,7 +11,7 @@ app.use(express.static('public'));
 app.use(express.urlencoded({extended:true}));
 
 app.get('/', (req, res) => {
-    res.render('index1.ejs');
+    res.render('index.ejs');
 });
 
 app.post('/', (req, res) => {
